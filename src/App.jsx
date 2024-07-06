@@ -17,17 +17,17 @@ function App() {
       alert("학습 날짜를 입력하세요");
       return;
     }
-    const obj = new Date(learningDate);
-    const firstReview = new Date(obj);
-    firstReview.setDate(obj.getDate() + 1);
-    const secondReview = new Date(obj);
-    secondReview.setDate(obj.getDate() + 8);
-    const thirdReview = new Date(obj);
-    thirdReview.setDate(obj.getDate() + 15);
-    const fourthReview = new Date(obj);
-    fourthReview.setMonth(obj.getMonth() + 1);
+    const date = new Date(learningDate);
+    const firstReview = new Date(date);
+    firstReview.setDate(date.getDate() + 1);
+    const secondReview = new Date(date);
+    secondReview.setDate(date.getDate() + 8);
+    const thirdReview = new Date(date);
+    thirdReview.setDate(date.getDate() + 15);
+    const fourthReview = new Date(date);
+    fourthReview.setMonth(date.getMonth() + 1);
     setReviewDates({
-      "학습 날짜": obj.toISOString().split("T")[0],
+      "학습 날짜": date.toISOString().split("T")[0],
       "1회차 복습": firstReview.toISOString().split("T")[0],
       "2회차 복습": secondReview.toISOString().split("T")[0],
       "3회차 복습": thirdReview.toISOString().split("T")[0],
