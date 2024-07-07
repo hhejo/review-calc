@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 function getToday() {
-  const date = new Date();
-  const year = date.getFullYear().toString();
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const day = `${date.getDay()}`.padStart(2, 0);
-  return `${year}-${month}-${day}`;
+  const dateObj = new Date();
+  const year = dateObj.getFullYear().toString();
+  const month = `${dateObj.getMonth() + 1}`.padStart(2, 0);
+  const date = `${dateObj.getDate()}`.padStart(2, 0);
+  return `${year}-${month}-${date}`;
 }
 
 function App() {
