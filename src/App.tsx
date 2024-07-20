@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-function getToday() {
-  const dateObj = new Date();
-  const year = dateObj.getFullYear().toString();
-  const month = `${dateObj.getMonth() + 1}`.padStart(2, "0");
-  const date = `${dateObj.getDate()}`.padStart(2, "0");
+function getToday(): string {
+  const dateObj: Date = new Date();
+  const year: string = dateObj.getFullYear().toString();
+  const month: string = `${dateObj.getMonth() + 1}`.padStart(2, "0");
+  const date: string = `${dateObj.getDate()}`.padStart(2, "0");
   return `${year}-${month}-${date}`;
 }
 
@@ -17,14 +17,14 @@ function App() {
       alert("학습 날짜를 입력하세요");
       return;
     }
-    const date = new Date(learningDate);
-    const firstReview = new Date(date);
+    const date: Date = new Date(learningDate);
+    const firstReview: Date = new Date(date);
     firstReview.setDate(date.getDate() + 1);
-    const secondReview = new Date(date);
+    const secondReview: Date = new Date(date);
     secondReview.setDate(date.getDate() + 8);
-    const thirdReview = new Date(date);
+    const thirdReview: Date = new Date(date);
     thirdReview.setDate(date.getDate() + 15);
-    const fourthReview = new Date(date);
+    const fourthReview: Date = new Date(date);
     fourthReview.setMonth(date.getMonth() + 1);
     setReviewDates({
       "학습 날짜": date.toISOString().split("T")[0],
