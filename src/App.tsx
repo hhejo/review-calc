@@ -1,13 +1,22 @@
 import { useState } from "react";
 
+// nextjs
+// zustand
+// test-library
+
+/**
+ *
+ * @returns
+ */
 function getToday(): string {
-  const dateObj: Date = new Date();
-  const year: string = dateObj.getFullYear().toString();
-  const month: string = `${dateObj.getMonth() + 1}`.padStart(2, "0");
-  const date: string = `${dateObj.getDate()}`.padStart(2, "0");
-  return `${year}-${month}-${date}`;
+  const dateObj: Date = new Date(); // Date Object for today
+  const year: string = dateObj.getFullYear().toString(); // year
+  const month: string = `${dateObj.getMonth() + 1}`.padStart(2, "0"); // month
+  const date: string = `${dateObj.getDate()}`.padStart(2, "0"); // date
+  return `${year}-${month}-${date}`; // yyyy-MM-dd
 }
 
+// App
 function App() {
   const [learningDate, setLearningDate] = useState(getToday);
   const [reviewDates, setReviewDates] = useState({});
@@ -17,6 +26,7 @@ function App() {
       alert("학습 날짜를 입력하세요");
       return;
     }
+
     const date: Date = new Date(learningDate);
     const firstReview: Date = new Date(date);
     firstReview.setDate(date.getDate() + 1);
@@ -26,6 +36,7 @@ function App() {
     thirdReview.setDate(date.getDate() + 15);
     const fourthReview: Date = new Date(date);
     fourthReview.setMonth(date.getMonth() + 1);
+
     setReviewDates({
       "학습 날짜": date.toISOString().split("T")[0],
       "1회차 복습": firstReview.toISOString().split("T")[0],
@@ -33,6 +44,8 @@ function App() {
       "3회차 복습": thirdReview.toISOString().split("T")[0],
       "4회차 복습": fourthReview.toISOString().split("T")[0],
     });
+
+    console.log(reviewDates);
   };
 
   return (
@@ -48,13 +61,6 @@ function App() {
       <button onClick={calculateReviewDates}>계산</button>
 
       <h2>복습 날짜: </h2>
-      <ul>
-        {Object.entries(reviewDates).map(([key, value]) => (
-          <li key={key}>
-            {key}: {value}
-          </li>
-        ))}
-      </ul>
     </>
   );
 }
