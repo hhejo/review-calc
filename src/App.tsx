@@ -5,8 +5,7 @@ import { useState } from "react";
 // test-library
 
 /**
- *
- * @returns
+ * 오늘 날짜를 yyyy-MM-dd 형식 문자열로 리턴
  */
 function getToday(): string {
   const dateObj: Date = new Date(); // Date Object for today
