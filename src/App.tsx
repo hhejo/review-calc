@@ -18,34 +18,56 @@ function getToday(): string {
 // App
 function App() {
   const [learningDate, setLearningDate] = useState(getToday);
-  const [reviewDates, setReviewDates] = useState({});
+  // const [reviewDates, setReviewDates] = useState({});
 
-  const calculateReviewDates = () => {
-    if (!learningDate) {
-      alert("학습 날짜를 입력하세요");
-      return;
-    }
+  const day = new Date().getDay();
 
-    const date: Date = new Date(learningDate);
-    const firstReview: Date = new Date(date);
-    firstReview.setDate(date.getDate() + 1);
-    const secondReview: Date = new Date(date);
-    secondReview.setDate(date.getDate() + 8);
-    const thirdReview: Date = new Date(date);
-    thirdReview.setDate(date.getDate() + 15);
-    const fourthReview: Date = new Date(date);
-    fourthReview.setMonth(date.getMonth() + 1);
+  console.log(new Date().getMonth());
 
-    setReviewDates({
-      "학습 날짜": date.toISOString().split("T")[0],
-      "1회차 복습": firstReview.toISOString().split("T")[0],
-      "2회차 복습": secondReview.toISOString().split("T")[0],
-      "3회차 복습": thirdReview.toISOString().split("T")[0],
-      "4회차 복습": fourthReview.toISOString().split("T")[0],
-    });
+  console.log("s:", new Date().setDate(0));
 
-    console.log(reviewDates);
-  };
+  if (day === 0) {
+    console.log("일요일");
+  } else if (day === 1) {
+    console.log("월요일");
+  } else if (day === 2) {
+    console.log("화요일");
+  } else if (day === 3) {
+    console.log("수요일");
+  } else if (day === 4) {
+    console.log("목요일");
+  } else if (day === 5) {
+    console.log("금요일");
+  } else if (day === 6) {
+    console.log("토요일");
+  }
+
+  // const calculateReviewDates = () => {
+  //   if (!learningDate) {
+  //     alert("학습 날짜를 입력하세요");
+  //     return;
+  //   }
+
+  //   const date: Date = new Date(learningDate);
+  //   const firstReview: Date = new Date(date);
+  //   firstReview.setDate(date.getDate() + 1);
+  //   const secondReview: Date = new Date(date);
+  //   secondReview.setDate(date.getDate() + 8);
+  //   const thirdReview: Date = new Date(date);
+  //   thirdReview.setDate(date.getDate() + 15);
+  //   const fourthReview: Date = new Date(date);
+  //   fourthReview.setMonth(date.getMonth() + 1);
+
+  //   setReviewDates({
+  //     "학습 날짜": date.toISOString().split("T")[0],
+  //     "1회차 복습": firstReview.toISOString().split("T")[0],
+  //     "2회차 복습": secondReview.toISOString().split("T")[0],
+  //     "3회차 복습": thirdReview.toISOString().split("T")[0],
+  //     "4회차 복습": fourthReview.toISOString().split("T")[0],
+  //   });
+
+  //   console.log(reviewDates);
+  // };
 
   return (
     <>
@@ -57,50 +79,19 @@ function App() {
         value={learningDate}
         onChange={(e) => setLearningDate(e.target.value)}
       />
-      <button onClick={calculateReviewDates}>계산</button>
+      {/* <button onClick={calculateReviewDates}>계산</button> */}
 
       <h2>복습 날짜: </h2>
 
-      <div>
-        <div className="flex">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-          <div>6</div>
-          <div>7</div>
-          <div>8</div>
-          <div>9</div>
-          <div>10</div>
-        </div>
-        <div className="flex">
-          <div>11</div>
-          <div>12</div>
-          <div>13</div>
-          <div>14</div>
-          <div>15</div>
-          <div>16</div>
-          <div>17</div>
-          <div>18</div>
-          <div>19</div>
-          <div>20</div>
-        </div>
-        <div className="flex">
-          <div>21</div>
-          <div>22</div>
-          <div>23</div>
-          <div>24</div>
-          <div>25</div>
-          <div>26</div>
-          <div>27</div>
-          <div>28</div>
-          <div>29</div>
-          <div>30</div>
-        </div>
-        <div className="flex">
-          <div>31</div>
-        </div>
+      {/* 달력 */}
+      <div className="grid grid-cols-7 text-center">
+        <div>일</div>
+        <div>월</div>
+        <div>화</div>
+        <div>수</div>
+        <div>목</div>
+        <div>금</div>
+        <div>토</div>
       </div>
     </>
   );
