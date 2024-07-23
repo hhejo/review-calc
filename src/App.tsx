@@ -20,27 +20,14 @@ function App() {
   const [learningDate, setLearningDate] = useState(getToday);
   // const [reviewDates, setReviewDates] = useState({});
 
-  const day = new Date().getDay();
+  const dateObj = new Date();
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth();
 
-  console.log(new Date().getMonth());
-
-  console.log("s:", new Date().setDate(0));
-
-  if (day === 0) {
-    console.log("일요일");
-  } else if (day === 1) {
-    console.log("월요일");
-  } else if (day === 2) {
-    console.log("화요일");
-  } else if (day === 3) {
-    console.log("수요일");
-  } else if (day === 4) {
-    console.log("목요일");
-  } else if (day === 5) {
-    console.log("금요일");
-  } else if (day === 6) {
-    console.log("토요일");
-  }
+  const dateObj2 = new Date(year, month, 1);
+  console.log(dateObj2);
+  const firstDay = dateObj2.getDay();
+  console.log(firstDay);
 
   // const calculateReviewDates = () => {
   //   if (!learningDate) {
