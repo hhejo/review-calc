@@ -20,14 +20,25 @@ function App() {
   const [learningDate, setLearningDate] = useState(getToday);
   // const [reviewDates, setReviewDates] = useState({});
 
-  const dateObj = new Date();
-  const year = dateObj.getFullYear();
-  const month = dateObj.getMonth();
+  const originDateObj = new Date();
+  const year = originDateObj.getFullYear();
+  const month = originDateObj.getMonth();
 
-  const dateObj2 = new Date(year, month, 1);
-  console.log(dateObj2);
-  const firstDay = dateObj2.getDay();
-  console.log(firstDay);
+  const dateObj = new Date(year, month, 1);
+  const firstDay = dateObj.getDay();
+  console.log("firstDay:", firstDay);
+
+  const currentMonth = dateObj.getMonth();
+  let acc = 1;
+  while (acc < 32) {
+    if (currentMonth !== dateObj.getMonth()) break;
+    dateObj.setDate(acc);
+    acc += 1;
+    console.log(dateObj.getDay());
+    console.log(
+      `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`
+    );
+  }
 
   // const calculateReviewDates = () => {
   //   if (!learningDate) {
