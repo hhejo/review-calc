@@ -31,13 +31,12 @@ function App() {
   const currentMonth = dateObj.getMonth();
   let acc = 1;
   while (currentMonth === dateObj.getMonth()) {
-    console.log(`dateObj.getMonth(): ${dateObj.getMonth()}`);
     dateObj.setDate(acc);
-    acc += 1;
     console.log(dateObj.getDay());
     console.log(
       `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`
     );
+    acc += 1;
   }
 
   // const calculateReviewDates = () => {
