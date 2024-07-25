@@ -30,8 +30,8 @@ function App() {
 
   const currentMonth = dateObj.getMonth();
   let acc = 1;
-  while (acc < 32) {
-    if (currentMonth !== dateObj.getMonth()) break;
+  while (currentMonth === dateObj.getMonth()) {
+    console.log(`dateObj.getMonth(): ${dateObj.getMonth()}`);
     dateObj.setDate(acc);
     acc += 1;
     console.log(dateObj.getDay());
