@@ -1,9 +1,5 @@
 import { useState } from "react";
 
-// nextjs
-// zustand
-// test-library
-
 /**
  * 오늘 날짜를 yyyy-MM-dd 형식 문자열로 리턴
  */
@@ -17,54 +13,64 @@ function getToday(): string {
 
 // App
 function App() {
-  const [learningDate, setLearningDate] = useState(getToday);
-  // const [reviewDates, setReviewDates] = useState({});
+  const [today, setToday] = useState(getToday);
 
-  const originDateObj = new Date();
-  const year = originDateObj.getFullYear();
-  const month = originDateObj.getMonth();
+  // 현재 연도, 월
+  const currentDateObj = new Date();
+  const currentYear = currentDateObj.getFullYear();
+  const currentMonth = currentDateObj.getMonth();
 
-  const dateObj = new Date(year, month, 1);
-  const firstDay = dateObj.getDay();
-  console.log("firstDay:", firstDay);
+  // const initDateObj = new Date(currentYear, currentMonth, 1);
+  // const firstDay = initDateObj.getDay();
 
-  const currentMonth = dateObj.getMonth();
-  let acc = 1;
-  while (currentMonth === dateObj.getMonth()) {
-    dateObj.setDate(acc);
-    console.log(dateObj.getDay());
-    console.log(
-      `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`
-    );
+  console.log(`오늘: ${currentDateObj}`);
+
+  let copiedDateObj = new Date(currentDateObj);
+  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7 - 1);
+  console.log(`학습 당일: ${copiedDateObj}`);
+
+  copiedDateObj = new Date(currentDateObj);
+  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7);
+  console.log(`복습 1회차: ${copiedDateObj}`);
+
+  copiedDateObj = new Date(currentDateObj);
+  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 6);
+  console.log(`복습 2회차: ${copiedDateObj}`);
+
+  copiedDateObj = new Date(currentDateObj);
+  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 4);
+  console.log(`복습 3회차: ${copiedDateObj}`);
+
+  copiedDateObj = new Date(currentDateObj);
+  copiedDateObj.setDate(copiedDateObj.getDate());
+  console.log(`복습 4회차: ${copiedDateObj}`);
+
+  copiedDateObj = new Date(currentDateObj);
+  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7 - 1);
+  copiedDateObj.setDate(copiedDateObj.getDate() - copiedDateObj.getDay());
+  console.log(copiedDateObj);
+
+  const daysArr = [];
+  let acc = 0;
+  while (acc < 48) {
+    const obj = { 날짜: copiedDateObj };
+    daysArr.push(obj);
+    copiedDateObj.setDate(copiedDateObj.getDate() + 1);
     acc += 1;
   }
 
-  // const calculateReviewDates = () => {
-  //   if (!learningDate) {
-  //     alert("학습 날짜를 입력하세요");
-  //     return;
-  //   }
+  console.table(daysArr);
 
-  //   const date: Date = new Date(learningDate);
-  //   const firstReview: Date = new Date(date);
-  //   firstReview.setDate(date.getDate() + 1);
-  //   const secondReview: Date = new Date(date);
-  //   secondReview.setDate(date.getDate() + 8);
-  //   const thirdReview: Date = new Date(date);
-  //   thirdReview.setDate(date.getDate() + 15);
-  //   const fourthReview: Date = new Date(date);
-  //   fourthReview.setMonth(date.getMonth() + 1);
+  // dateObj.setDate(dateObj.getDate() + 1);
+  // console.log(`첫 번째 복습일: ${dateObj}`);
 
-  //   setReviewDates({
-  //     "학습 날짜": date.toISOString().split("T")[0],
-  //     "1회차 복습": firstReview.toISOString().split("T")[0],
-  //     "2회차 복습": secondReview.toISOString().split("T")[0],
-  //     "3회차 복습": thirdReview.toISOString().split("T")[0],
-  //     "4회차 복습": fourthReview.toISOString().split("T")[0],
-  //   });
-
-  //   console.log(reviewDates);
-  // };
+  // const currentMonth = dateObj.getMonth();
+  // console.log("currentMonth:", currentMonth);
+  // let acc = 1;
+  // while (currentMonth === dateObj.getMonth()) {
+  //   acc += 1;
+  //   dateObj.setDate(acc);
+  // }
 
   return (
     <>
@@ -73,8 +79,8 @@ function App() {
       <input
         type="date"
         id="learningDate"
-        value={learningDate}
-        onChange={(e) => setLearningDate(e.target.value)}
+        value={today}
+        onChange={(e) => setToday(e.target.value)}
       />
       {/* <button onClick={calculateReviewDates}>계산</button> */}
 
