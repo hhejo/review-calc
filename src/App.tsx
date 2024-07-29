@@ -11,6 +11,13 @@ function getToday(): string {
   return `${year}-${month}-${date}`; // yyyy-MM-dd
 }
 
+function getDateString(dateObj: Date): string {
+  const year: string = dateObj.getFullYear().toString(); // year
+  const month: string = `${dateObj.getMonth() + 1}`.padStart(2, "0"); // month
+  const date: string = `${dateObj.getDate()}`.padStart(2, "0"); // date
+  return `${year}-${month}-${date}`; // yyyy-MM-dd
+}
+
 // App
 function App() {
   const [today, setToday] = useState(getToday);
@@ -26,24 +33,20 @@ function App() {
   console.log(`오늘: ${currentDateObj}`);
 
   let copiedDateObj = new Date(currentDateObj);
-  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7 - 1);
-  console.log(`학습 당일: ${copiedDateObj}`);
-
-  copiedDateObj = new Date(currentDateObj);
-  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7);
-  console.log(`복습 1회차: ${copiedDateObj}`);
-
-  copiedDateObj = new Date(currentDateObj);
-  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 6);
-  console.log(`복습 2회차: ${copiedDateObj}`);
-
-  copiedDateObj = new Date(currentDateObj);
-  copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 4);
-  console.log(`복습 3회차: ${copiedDateObj}`);
-
-  copiedDateObj = new Date(currentDateObj);
-  copiedDateObj.setDate(copiedDateObj.getDate());
-  console.log(`복습 4회차: ${copiedDateObj}`);
+  // copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7 - 1);
+  // console.log(`학습 당일: ${copiedDateObj}`);
+  // copiedDateObj = new Date(currentDateObj);
+  // copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7);
+  // console.log(`복습 1회차: ${copiedDateObj}`);
+  // copiedDateObj = new Date(currentDateObj);
+  // copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 6);
+  // console.log(`복습 2회차: ${copiedDateObj}`);
+  // copiedDateObj = new Date(currentDateObj);
+  // copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 4);
+  // console.log(`복습 3회차: ${copiedDateObj}`);
+  // copiedDateObj = new Date(currentDateObj);
+  // copiedDateObj.setDate(copiedDateObj.getDate());
+  // console.log(`복습 4회차: ${copiedDateObj}`);
 
   copiedDateObj = new Date(currentDateObj);
   copiedDateObj.setDate(copiedDateObj.getDate() - 7 * 7 - 1);
@@ -51,15 +54,20 @@ function App() {
   console.log(copiedDateObj);
 
   const daysArr = [];
-  let acc = 0;
-  while (acc < 48) {
-    const obj = { 날짜: copiedDateObj };
+  let x = getDateString(copiedDateObj);
+
+  while (x !== getToday()) {
+    const obj = {
+      dateString: getDateString(copiedDateObj), // yyyy-MM-dd
+      day: `${copiedDateObj.getDay()}`, // 요일
+      isReviewDate: false,
+    };
     daysArr.push(obj);
     copiedDateObj.setDate(copiedDateObj.getDate() + 1);
-    acc += 1;
+    x = getDateString(copiedDateObj);
   }
 
-  console.table(daysArr);
+  console.log(daysArr);
 
   // dateObj.setDate(dateObj.getDate() + 1);
   // console.log(`첫 번째 복습일: ${dateObj}`);
